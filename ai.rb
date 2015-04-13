@@ -1,5 +1,11 @@
 class Ai
 
+  attr_reader :moves
+
+  def initialize
+    @moves = []
+  end
+
   def play(board, turn, last_play)
     if turn == 1
       puts "I will go first."
@@ -12,6 +18,7 @@ class Ai
       board.possibilities.delete(play)
     end
     board.display
+    @moves << play
 
   end
 

@@ -1,9 +1,10 @@
 class Player
 
-  attr_reader :last_play
+  attr_reader :last_play, :moves
 
   def initialize
     @last_play = ""
+    @moves = []
   end
 
   def play(board)
@@ -22,6 +23,7 @@ class Player
     end
     board.possibilities.delete(play)
     @last_play = play
+    @moves << play
     board.add_play("X", row, position)
   end
 
