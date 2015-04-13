@@ -23,7 +23,6 @@ class Player
     board.possibilities.delete(play)
     @last_play = play
     board.add_play("X", row, position)
-    board.display
   end
 
 
