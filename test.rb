@@ -9,7 +9,7 @@ class TestTicTacToe < MiniTest::Unit::TestCase
 
   def test_display_board
     board = Board.new
-    assert_equal board.display_board, nil
+    assert_equal board.display, nil
   end
 
 end
