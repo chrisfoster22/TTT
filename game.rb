@@ -1,5 +1,6 @@
 require_relative 'board'
 require_relative 'player'
+require_relative 'ai'
 
 class Game
 
@@ -7,31 +8,30 @@ class Game
     @player = "X"
     @ai = "O"
     @board = Board.new
+    @player = Player.new
+    @ai = Ai.new
+    @turn = 1
   end
 
-  def play
-    row = ""
-    position = 0
+  def start
     puts "Welcome to Tic Tac Toe! Unfortunately you will never win."
     puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"
-    until self.win?
-      unless row == "T" || row == "M" || row == "B"
-        puts "Please choose a row (T = Top, M = Middle, B = Bottom)"
-        row = gets.chomp
-      end
-      unless position == 1 || position == 2 || position == 3
-        puts "Please choose a position (1, 2, or 3)"
-        position = gets.chomp.to_i
-        p position
-      end
+    until self.over?
+      @ai.play(@board, @turn, @player.last_play)
+      @player.play(@board)
+      @turn += 1
     end
   end
 
-  def win?
-    if @board =
+  def ai_play
+  end
+
+
+  def over?
+    false
   end
 
 end
 
 game = Game.new
-game.play
+game.start
