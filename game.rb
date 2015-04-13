@@ -12,17 +12,22 @@ class Game
     @ai = Ai.new
     @turn = 1
     @winning_numbers = @board.winning_numbers
+    @players = [@ai, @player]
+    @first_player = @players.sample
+    @second_player = (@players - [@first_player])[0]
   end
+
 
   def start
     puts "Welcome to Tic Tac Toe! Unfortunately you will never win."
     puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"
     until over?
-      @ai.play(@board, @turn, @player)
-      if @board.possibilities.count > 0 && over? == false
-        @player.play(@board)
-      end
+      @first_player.play(@board, @turn, @player)
       @turn += 1
+      if @board.possibilities.count > 0 && over? == false
+        @second_player.play(@board, @turn, @player)
+        @turn += 1
+      end
     end
   end
 

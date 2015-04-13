@@ -7,7 +7,7 @@ class Player
     @moves = []
   end
 
-  def play(board)
+  def play(board, turn, player)
     valid_move = false
     while valid_move == false
       puts "Please choose a row (T = Top, M = Middle, B = Bottom)"

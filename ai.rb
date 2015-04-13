@@ -14,7 +14,7 @@ class Ai
     if turn == 1
       puts "I will go first."
       board.add_play("O", "M", 2)
-    elsif turn == 2
+    elsif turn == 3
       puts "My Turn!"
       if board.edges.include?(last_play)
         if last_play == "T2"
@@ -37,7 +37,7 @@ class Ai
           @play = "T1"
         end
       end
-    elsif turn > 2
+    elsif turn > 3
       @play = possibilities.sample
       board.winning_numbers.each do |a|
         if (a & @moves).count == 2
