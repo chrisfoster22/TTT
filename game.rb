@@ -68,6 +68,6 @@ end
 
 
 game = Game.new
-game.start
 puts "Welcome to Tic Tac Toe! Unfortunately you will never win."
 puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"
+game.start
