@@ -21,7 +21,7 @@ class Game
     puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"
     until over? || @board.possibilities.count == 0
       take_turn(@first_player)
-      unless @board.possibilities.count == 0
+      unless @board.possibilities.count == 0 || over?
         take_turn(@second_player)
       end
     end
