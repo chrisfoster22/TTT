@@ -21,14 +21,19 @@ class Game
   def start
     puts "Welcome to Tic Tac Toe! Unfortunately you will never win."
     puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"
-    until over?
-      @first_player.play(@board, @turn, @player)
-      @turn += 1
+    until over? || @board.possibilities.count > 0
+
       if @board.possibilities.count > 0 && over? == false
-        @second_player.play(@board, @turn, @player)
-        @turn += 1
+
       end
     end
+  end
+
+  def take_turn
+    active_player.play(@board, @turn, @player)
+    @turn += 1
+  end
+
   end
 
   def over?
