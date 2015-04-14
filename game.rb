@@ -5,54 +5,63 @@ require_relative 'ai'
 class Game
 
   def initialize
-    @player = "X"
-    @ai = "O"
     @board = Board.new
     @player = Player.new
     @ai = Ai.new
     @turn = 1
     @winning_numbers = @board.winning_numbers
-    @players = [@ai, @player]
-    @first_player = @players.sample
-    @second_player = (@players - [@first_player])[0]
+    players = [@ai, @player]
+    @first_player = players.sample
+    @second_player = (players - [@first_player])[0]
+    @winner = ""
   end
-
 
   def start
     puts "Welcome to Tic Tac Toe! Unfortunately you will never win."
     puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"
-    until over? || @board.possibilities.count > 0
-
-      if @board.possibilities.count > 0 && over? == false
-
+    until over? || @board.possibilities.count == 0
+      take_turn(@first_player)
+      unless @board.possibilities.count == 0
+        take_turn(@second_player)
       end
     end
+    game_over(@winner)
   end
 
-  def take_turn
+  def take_turn(active_player)
     active_player.play(@board, @turn, @player)
     @turn += 1
-  end
-
   end
 
   def over?
     @winning_numbers.each do |a|
       if (@player.moves & a).sort == a.sort
-        puts "YOU WON!! IMpossiblele!!"
+        @winner = @player
         return true
       elsif (@ai.moves & a).sort == a.sort
-        puts "YOU LOSE."
+        @winner = @ai
         return true
         break
       elsif @board.possibilities.count == 0
-        puts "You didn't win, which basically means you lost."
+        @winner = nil
         return true
       end
     end
     false
   end
+
+  def game_over(winner)
+    if winner == @player
+      puts "You won! Impossible!"
+    elsif winner == @ai
+      puts "YOU LOSE. I told you."
+    else
+      puts "You didn't win, which basically means you lost."
+    end
+  end
+
 end
+
 
 game = Game.new
 game.start
