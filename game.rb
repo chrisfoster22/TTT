@@ -17,8 +17,6 @@ class Game
   end
 
   def start
-    puts "Welcome to Tic Tac Toe! Unfortunately you will never win."
-    puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"
     until over? || @board.possibilities.count == 0
       take_turn(@first_player)
       unless @board.possibilities.count == 0 || over?
@@ -58,6 +56,12 @@ class Game
     else
       puts "You didn't win, which basically means you lost."
     end
+    puts "Play again? (y/n)"
+    answer = gets.chomp
+    if answer == "Y" || answer == "y" || answer == "yes" || answer == "Yes"
+      game = Game.new
+      game.start
+    end
   end
 
 end
@@ -65,3 +69,5 @@ end
 
 game = Game.new
 game.start
+puts "Welcome to Tic Tac Toe! Unfortunately you will never win."
+puts "xoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxoxox"

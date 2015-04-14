@@ -38,8 +38,8 @@ class Ai
         end
       end
       if player_moves.count == 2
-        if board.corners.include?(player_moves[0] || player_moves[1])
-                && player_moves.include?("M2")
+        if board.corners.include?(player_moves[0] || player_moves[1]) &&
+                  player_moves.include?("M2")
           possible_plays = board.corners & possibilities
           @play = possible_plays.sample
         end
