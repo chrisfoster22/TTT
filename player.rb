@@ -10,7 +10,7 @@ class Player
   def play(board, turn, player)
     valid_move = false
     while valid_move == false
-      puts "Please choose a row (T = Top, M = Middle, B = Bottom)"
+      puts "Your turn!\nPlease choose a row (T = Top, M = Middle, B = Bottom)"
       row = gets.chomp
       puts "Please choose a position (1, 2, or 3)"
       position = gets.chomp.to_i
@@ -18,7 +18,7 @@ class Player
       if board.possibilities.include?(play)
         valid_move = true
       else
-        puts "That is not a valid move. Please try again, scrub."
+        puts "That is not a valid move. Please try again."
       end
     end
     board.possibilities.delete(play)
