@@ -9,18 +9,17 @@ class Game
     @player = Player.new
     @ai = Ai.new
     @turn = 1
-    @winning_numbers = @board.winning_numbers
-    players = [@ai, @player]
-    @first_player = players.sample
-    @second_player = (players - [@first_player])[0]
     @winner = ""
   end
 
   def start
+    players = [@ai, @player]
+    first_player = players.sample
+    second_player = (players - [first_player])[0]
     until over? || @board.possibilities.count == 0
-      take_turn(@first_player)
+      take_turn(first_player)
       unless @board.possibilities.count == 0 || over?
-        take_turn(@second_player)
+        take_turn(second_player)
       end
     end
     game_over(@winner)
@@ -32,7 +31,8 @@ class Game
   end
 
   def over?
-    @winning_numbers.each do |a|
+    winning_numbers = @board.winning_numbers
+    winning_numbers.each do |a|
       if (@player.moves & a).sort == a.sort
         @winner = @player
         return true
