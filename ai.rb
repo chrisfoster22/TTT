@@ -43,6 +43,15 @@ class Ai
           possible_plays = board.corners & possibilities
           @play = possible_plays.sample
         end
+        if player_moves.sort == ["T2", "M3"].sort
+          @play = "T3"
+        elsif player_moves.sort == ["T2", "M1"].sort
+          @play = "T1"
+        elsif player_moves.sort == ["B2", "M1"].sort
+          @play = "B1"
+        elsif player_moves.sort == ["B2", "M3"].sort
+          @play = "B3"
+        end
       end
     end
 
